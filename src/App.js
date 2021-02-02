@@ -5,7 +5,7 @@ import Display from './Display'
 import Form from './Form'
 
 function App() {
-  const url = "https://merngb.herokuapp.com/"
+  // const url = "https://merngb.herokuapp.com/"
 
 
   return (
@@ -20,8 +20,15 @@ function App() {
           <Route 
             exact
             path='/'
-            render={(rp) => <Display {...rp} />} />
-          <Route />
+            render={(rp) => <Display {...rp} />} 
+          />
+          <Route 
+            exact
+            path='/create'
+            render={(rp) => (
+              <Form {...rp} label="create" />
+            )}
+          />
           <Route />
         </Switch>
       </main>
