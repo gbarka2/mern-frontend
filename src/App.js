@@ -29,7 +29,11 @@ function App() {
               <Form {...rp} label="create" />
             )}
           />
-          <Route />
+          <Route
+            exact
+            path='/edit'
+            render={(rp) => <Form {...rp} label="update" />}
+          />
         </Switch>
       </main>
     </div>
