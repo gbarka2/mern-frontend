@@ -1,18 +1,10 @@
 import React from 'react'
 
 const Owner = (props) => {
-  const [owners, setOwners] = React.useState([])
-
-  const getOwners = () => {
-    fetch(props.url + "/owners")
-    .then(response => response.json())
-    .then(data => {
-      setOwners(data)
-    })
-  }
-
+  const {owners} = props
+  
   React.useEffect(() => {
-    getOwners()
+    props.getOwners()
   }, []) 
   
   return (
@@ -21,7 +13,11 @@ const Owner = (props) => {
         return (
           <article key={owner._id}>
             <h1>{owner.firstName} {owner.lastName} - Age: {owner.age}</h1>
-            <p>{owner.cars[0]}</p>
+            {owner.cars.map(car => {
+              return (
+                <p>{car.year} {car.make} {car.model}</p>
+              )
+            })}
           </article>
         )
       })}

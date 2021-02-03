@@ -14,12 +14,21 @@ function App() {
     year: 0
   }
   const [selectedCar, setSelectedCar] = React.useState(emptyCar)
+  const [owners, setOwners] = React.useState([])
 
   const getCars = () => {
     fetch(url + "/cars")
     .then(response => response.json())
     .then(data => {
       setCars(data)
+    })
+  }
+
+  const getOwners = () => {
+    fetch(url + "/owners")
+    .then(response => response.json())
+    .then(data => {
+      setOwners(data)
     })
   }
 
@@ -99,7 +108,7 @@ function App() {
             exact
             path='/owners'
             render={(rp) => (
-              <Owner {...rp} label="owners" url={url} />
+              <Owner {...rp} label="owners" url={url} getOwners={getOwners} owners={owners} />
             )}
           />
         </Switch>
