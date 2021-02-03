@@ -3,6 +3,7 @@ import './App.css'
 import {Route, Link, Switch} from "react-router-dom"
 import Display from './Display'
 import Form from './Form'
+import Owner from './Owner'
 
 function App() {
   const url = "https://merngb.herokuapp.com"
@@ -71,6 +72,9 @@ function App() {
       <Link to="/create">
         <button>Create New Listing</button>
       </Link>
+      <Link to="/owners">
+        <button>Show Owners</button>
+      </Link>
       <hr />
       <main>
         <Switch>
@@ -90,6 +94,13 @@ function App() {
             exact
             path='/edit'
             render={(rp) => <Form {...rp} label="update" car={selectedCar} handleSubmit={handleUpdateCar} />}
+          />
+          <Route 
+            exact
+            path='/owners'
+            render={(rp) => (
+              <Owner {...rp} label="owners" url={url} />
+            )}
           />
         </Switch>
       </main>

@@ -6,7 +6,7 @@ const Display = (props) => {
   // console.log(cars)
   const loaded = () => {
       return (
-        <div style={{textAlign: "center"}}>DISPLAY
+        <div style={{textAlign: "center"}}>
         {cars.map(car => {
           return(
             <article key={car._id}>
