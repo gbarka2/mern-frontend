@@ -166,14 +166,14 @@ function App() {
             exact
             path='/owner-edit'
             render={(rp) => (
-              <Form2 {...rp} label="Update Owner" owner={selectedOwner} handleSubmit={handleUpdateOwner} />
+              <Form2 {...rp} label="Update Owner" owner={selectedOwner} handleSubmit={handleUpdateOwner} cars={cars} />
             )}
           />
           <Route 
             exact
             path='/owners-create'
             render={(rp) => (
-              <Form2 {...rp} label="Create Owner" owner={emptyOwner} handleSubmit={handleCreateOwner} />
+              <Form2 {...rp} label="Create Owner" owner={emptyOwner} handleSubmit={handleCreateOwner} cars={cars} />
             )}
           />
         </Switch>

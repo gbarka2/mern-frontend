@@ -8,7 +8,7 @@ const Owner = (props) => {
   }, []) 
   
   return (
-    <div style={{textAlign: "center"}}>OWNER
+    <div style={{textAlign: "center"}}>
       {owners.map(owner => {
         return (
           <article key={owner._id}>
