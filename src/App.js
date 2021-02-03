@@ -12,6 +12,7 @@ function App() {
     model: "",
     year: 0
   }
+  const [selectedCar, setSelectedCar] = React.useState(emptyCar)
 
   const getCars = () => {
     fetch(url + "/cars")
@@ -38,6 +39,23 @@ function App() {
     })
   }
 
+  const selectCar = (car) => {
+    setSelectedCar(car)
+  }
+
+  const handleUpdateCar = (car) => {
+    fetch(url +'/cars/' + car._id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(car)
+    })
+    .then(() => {
+      getCars()
+    })
+  }
+
   return (
     <div>
       <h1>Car Listings</h1>
@@ -50,7 +68,7 @@ function App() {
           <Route 
             exact
             path='/'
-            render={(rp) => <Display {...rp} cars={cars}/>} 
+            render={(rp) => <Display {...rp} cars={cars} selectCar={selectCar} />} 
           />
           <Route 
             exact
@@ -62,7 +80,7 @@ function App() {
           <Route
             exact
             path='/edit'
-            render={(rp) => <Form {...rp} label="update" />}
+            render={(rp) => <Form {...rp} label="update" car={selectedCar} handleSubmit={handleUpdateCar} />}
           />
         </Switch>
       </main>

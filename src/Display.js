@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Display = (props) => {
   const {cars} = props
@@ -11,7 +12,12 @@ const Display = (props) => {
             <article key={car._id}>
               <h1>{car.year} {car.make} {car.model}</h1>
               <div>
-                <button>Edit Listing</button>
+                <Link to='/edit'>
+                  <button onClick={() => {
+                    props.selectCar(car)
+                    props.history.push("/edit")
+                  }}>Edit Listing</button>
+                </Link>
                 <button>Sold!</button>
               </div>
             </article>
