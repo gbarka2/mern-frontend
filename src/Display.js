@@ -18,7 +18,9 @@ const Display = (props) => {
                     props.history.push("/edit")
                   }}>Edit Listing</button>
                 </Link>
-                <button>Sold!</button>
+                <button onClick={() => {
+                  props.deleteCar(car)
+                }}>Sold!</button>
               </div>
             </article>
           )

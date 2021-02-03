@@ -56,6 +56,15 @@ function App() {
     })
   }
 
+  const deleteCar = (car) => {
+    fetch(url + '/cars/' +  car._id, {
+      method: "delete"
+    })
+    .then(() => {
+      getCars()
+    })
+  }
+
   return (
     <div>
       <h1>Car Listings</h1>
@@ -68,7 +77,7 @@ function App() {
           <Route 
             exact
             path='/'
-            render={(rp) => <Display {...rp} cars={cars} selectCar={selectCar} />} 
+            render={(rp) => <Display {...rp} cars={cars} selectCar={selectCar} deleteCar={deleteCar} />} 
           />
           <Route 
             exact
