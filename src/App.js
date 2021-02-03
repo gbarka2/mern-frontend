@@ -5,8 +5,25 @@ import Display from './Display'
 import Form from './Form'
 
 function App() {
-  // const url = "https://merngb.herokuapp.com/"
+  const url = "https://merngb.herokuapp.com"
+  const [cars, setCars] = React.useState([])
+  const emptyCar = {
+    make: "",
+    model: "",
+    year: 0
+  }
 
+  const getCars = () => {
+    fetch(url + "/cars")
+    .then(response => response.json())
+    .then(data => {
+      setCars(data)
+    })
+  }
+
+  React.useEffect(() => {
+    getCars()
+  }, [])
 
   return (
     <div>
@@ -20,7 +37,7 @@ function App() {
           <Route 
             exact
             path='/'
-            render={(rp) => <Display {...rp} />} 
+            render={(rp) => <Display {...rp} cars={cars}/>} 
           />
           <Route 
             exact
