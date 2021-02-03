@@ -25,10 +25,23 @@ function App() {
     getCars()
   }, [])
 
+  const handleCreateCar = (newCar) => {
+    fetch(url + "/cars", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newCar)
+    })
+    .then(() => {
+      getCars()
+    })
+  }
+
   return (
     <div>
       <h1>Car Listings</h1>
-      <Link>
+      <Link to="/create">
         <button>Create New Listing</button>
       </Link>
       <hr />
@@ -43,7 +56,7 @@ function App() {
             exact
             path='/create'
             render={(rp) => (
-              <Form {...rp} label="create" />
+              <Form {...rp} label="create" car={emptyCar} handleSubmit={handleCreateCar} />
             )}
           />
           <Route
